@@ -12,9 +12,9 @@ class UiWindow(object):
         self.table.setObjectName("table")
         window.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(window)
+        self.retranslate(window)
         QtCore.QMetaObject.connectSlotsByName(window)
 
-    def retranslateUi(self, window):
+    def retranslate(self, window):
         _translate = QtCore.QCoreApplication.translate
         window.setWindowTitle(_translate("MainWindow", "Espresso"))

@@ -7,13 +7,13 @@ from des import UiWindow
 class Window(UiWindow, QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.initUI()
+        self.ui()
 
-    def initUI(self) -> None:
+    def ui(self) -> None:
         db: QSqlDatabase = QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName('coffee.sqlite')
         db.open()
         model: QSqlDatabase = QSqlTableModel(self, db)
-        model.setTable('coffee.sqlite')
+        model.setTable('QSQLITE')
         model.select()
         self.table.setModel(model)
