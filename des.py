@@ -2,20 +2,19 @@ from PyQt6 import QtCore, QtWidgets
 
 
 class UiWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(600, 450)
-        self.central_w = QtWidgets.QWidget(MainWindow)
-        self.central_w.setObjectName("centralwidget")
-        self.push_button = QtWidgets.QPushButton(self.central_w)
-        self.push_button.setGeometry(QtCore.QRect(500, 400, 80, 30))
-        self.push_button.setObjectName("pushButton")
-        MainWindow.setCentralWidget(self.central_w)
+    def setupUi(self, window):
+        window.setObjectName("MainWindow")
+        window.resize(800, 600)
+        self.centralwidget = QtWidgets.QWidget(window)
+        self.centralwidget.setObjectName("centralwidget")
+        self.table = QtWidgets.QTableView(self.centralwidget)
+        self.table.setGeometry(QtCore.QRect(10, 30, 780, 560))
+        self.table.setObjectName("table")
+        window.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(window)
+        QtCore.QMetaObject.connectSlotsByName(window)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, window):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Git Circles"))
-        self.push_button.setText(_translate("MainWindow", "Рисовать"))
+        window.setWindowTitle(_translate("MainWindow", "Espresso"))

@@ -1,7 +1,5 @@
+from PyQt6.QtSql import QSqlDatabase, QSqlTableModel
 from PyQt6.QtWidgets import QMainWindow
-from PyQt6.QtGui import QColor, QPainter
-
-from random import randint
 
 from des import UiWindow
 
@@ -12,26 +10,10 @@ class Window(UiWindow, QMainWindow):
         self.initUI()
 
     def initUI(self) -> None:
-        self.setupUi(self)
-        self.push_button.clicked.connect(self.paintEvent)
-
-    def paintEvent(self, event=None) -> None:
-        qp: QPainter = QPainter()
-        qp.begin(self)
-        self.draw_obj(qp)
-        qp.end()
-
-    def draw_obj(self, qp: QPainter) -> None:
-        qp.setBrush(QColor(
-            randint(0, 255),
-            randint(0, 255),
-            randint(0, 255)
-        ))
-        for i in range(randint(2, 14)):
-            radius: int = randint(0, 200)
-            qp.drawEllipse(
-                randint(0, 600),
-                randint(0, 450),
-                radius,
-                radius
-            )
+        db: QSqlDatabase = QSqlDatabase.addDatabase('QSQLITE')
+        db.setDatabaseName('coffee.sqlite')
+        db.open()
+        model: QSqlDatabase = QSqlTableModel(self, db)
+        model.setTable('')  # TODO название главной таблицы
+        model.select()
+        self.table.setModel(model)
